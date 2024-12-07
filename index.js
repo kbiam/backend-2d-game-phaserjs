@@ -10,12 +10,18 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "*",
+        origin: "https://virtual-workspace-lime.vercel.app",
         methods: ["GET", "POST"]
     }
 });
 
-app.use(cors({ origin: '*' }));
+const corsOption = {
+    origin:true
+  }
+  
+app.use(cors(corsOption));
+app.options('*', cors(corsOption));
+
 
 const players = {};
 const activeConnections = new Map()
